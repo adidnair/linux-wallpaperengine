@@ -24,6 +24,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-narrowing")
 add_compile_definitions(ERRORONLY=${ERRORONLY})
 add_compile_definitions(DATADIR="${DATADIR}")
 
+set(CMAKE_MODULE_PATH
+    ${CMAKE_MODULE_PATH}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cef-cmake/cmake
+)
+
+include(cef_cmake)
+add_subdirectory(cef-cmake)
+
 find_package(X11)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
@@ -91,7 +100,7 @@ set(
     ${CMAKE_CURRENT_BINARY_DIR}/build
     )
 
-add_subdirectory(${CEF_LIBCEF_DLL_WRAPPER_PATH} libcef_dll_wrapper)
+# add_subdirectory(${CEF_LIBCEF_DLL_WRAPPER_PATH} libcef_dll_wrapper)
 
 include_directories(
     ${MPV_INCLUDE_DIR}
